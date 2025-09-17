@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useGetSingleCourseQuery } from "@/redux/course/courseApi";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
@@ -20,11 +21,8 @@ type Course = {
   instructor: Instructor;
 };
 
-type UserRole = "admin" | "student";
-
 const CourseDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [userRole, setUserRole] = useState<UserRole>("student");
 
   // Form state
   const [name, setName] = useState("");
@@ -81,7 +79,7 @@ const CourseDetails: React.FC = () => {
     );
 
   return (
-    <div className="max-w-screen-xl mx-auto px-6 py-16 mt-10">
+    <div className="container  mx-auto py-16">
       <div className="flex flex-col lg:flex-row gap-10">
         {/* Left side: Course details */}
         <div className="lg:w-1/2 w-full flex flex-col gap-6">

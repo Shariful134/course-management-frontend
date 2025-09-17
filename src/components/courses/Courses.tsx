@@ -83,7 +83,7 @@ const Courses = () => {
   }
 
   return (
-    <div className="max-w-screen-xl mx-auto px-6 py-5">
+    <div className="container  mx-auto py-5">
       <h1 className="text-3xl pt-10 font-bold mb-6 text-gray-900 dark:text-white">
         All Courses
       </h1>

@@ -61,7 +61,7 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className="container mx-auto">
       {/* Hero Section */}
       <section
         className="relative h-[400px] bg-cover bg-center bg-no-repeat"
@@ -87,7 +87,7 @@ const Home = () => {
 
       {/* Popular Courses */}
       <section className="py-16 bg-white dark:bg-gray-800">
-        <div className="max-w-screen-xl mx-auto px-6">
+        <div className="">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
             Popular Courses
           </h2>
@@ -145,7 +145,7 @@ const Home = () => {
 
       {/* Success Stories */}
       <section className="py-16 bg-gray-50 dark:bg-gray-900">
-        <div className="max-w-screen-xl mx-auto px-6">
+        <div className="">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
             Success Stories
           </h2>

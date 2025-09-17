@@ -1,11 +1,27 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { logout, selectCurrentUser } from "@/redux/auth/authSlice";
+import { useAppDispath } from "@/redux/hooks";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const Navbar = () => {
+  const dispatch = useAppDispath();
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   // Active link class
   const activeClass = "text-blue-600 font-bold";
+
+  const handlLogOut = () => {
+    dispatch(logout());
+    toast.success("LogOut SuccessFully!");
+    navigate("/login");
+    window.scrollTo(0, 0);
+  };
+
+  const user = useSelector(selectCurrentUser) as any;
 
   return (
     <nav className="sticky top-0 bg-white dark:bg-gray-800 shadow z-50">
@@ -64,18 +80,29 @@ const Navbar = () => {
 
           {/* Auth Buttons */}
           <div className="hidden md:flex space-x-4">
-            <NavLink
-              to="/login"
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-            >
-              Login
-            </NavLink>
-            <NavLink
-              to="/register"
-              className="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition"
-            >
-              Register
-            </NavLink>
+            {user ? (
+              <button
+                onClick={handlLogOut}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+              >
+                LogOut
+              </button>
+            ) : (
+              <div>
+                <NavLink
+                  to="/login"
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+                >
+                  Login
+                </NavLink>
+                <NavLink
+                  to="/register"
+                  className="px-4 py-2 ms-5 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition"
+                >
+                  Register
+                </NavLink>
+              </div>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -141,20 +168,29 @@ const Navbar = () => {
             </NavLink>
           ))}
           <div className="flex flex-col space-y-2 mt-4">
-            <NavLink
-              to="/login"
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-              onClick={() => setIsOpen(false)}
-            >
-              Login
-            </NavLink>
-            <NavLink
-              to="/register"
-              className="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition"
-              onClick={() => setIsOpen(false)}
-            >
-              Register
-            </NavLink>
+            {user ? (
+              <button
+                onClick={handlLogOut}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+              >
+                LogOut
+              </button>
+            ) : (
+              <div>
+                <NavLink
+                  to="/login"
+                  className="px-4 py-2  bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+                >
+                  Login
+                </NavLink>
+                <NavLink
+                  to="/register"
+                  className="px-4 py-2 ms-5 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition"
+                >
+                  Register
+                </NavLink>
+              </div>
+            )}
           </div>
         </div>
       )}

@@ -39,7 +39,7 @@ const Registration = () => {
       if (res?.error) {
         toast.error(res?.error?.data?.message);
       } else {
-        toast.success(res?.data?.message);
+        toast.success(res?.Data?.message);
         navigate("/login");
       }
     } catch (error) {
@@ -48,7 +48,7 @@ const Registration = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-50 to-blue-100 font-inter px-4">
+    <div className="container mx-auto min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-50 to-blue-100 font-inter px-4">
       <div className="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         {/* Left Side: Info */}
         <div className="text-center lg:text-left">
