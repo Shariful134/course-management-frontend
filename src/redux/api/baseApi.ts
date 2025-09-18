@@ -16,7 +16,7 @@ import type { TResponse } from "@/type/types";
 
 const baseQuery = fetchBaseQuery({
   // baseUrl: "http://localhost:5000/api/v1/",
-  baseUrl: "https://course-management-puce.vercel.app/api/v1/",
+  baseUrl: "https://course-management-frontend-eight.vercel.app/api/v1/",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
@@ -48,7 +48,7 @@ const baseQueryWithRefreshToken: BaseQueryFn<
     console.log("Sending Refresh token ");
     const res = await fetch(
       //"http://localhost:5000/api/v1/auth/refresh-token",
-      "https://course-management-puce.vercel.app/api/v1/auth/refresh-token",
+      "https://course-management-frontend-eight.vercel.app/api/v1/auth/refresh-token",
       {
         method: "POST",
         credentials: "include",
