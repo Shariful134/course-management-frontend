@@ -76,8 +76,8 @@ const Login = () => {
         <div className="bg-white dark:bg-gray-800 p-10 rounded-3xl shadow-2xl w-full max-w-md mx-auto relative">
           {/* Demo Credentials Box */}
           <div className="text-center bg-blue-100 border border-blue-300 text-blue-700 text-sm px-4 py-2 rounded-lg shadow-sm font-medium mb-6">
-            <p className="font-semibold">Email: shariful6@gmail.com</p>
-            <p className="font-semibold">Password: Shariful6!23</p>
+            <p className="font-semibold">Email: shariful32213@gmail.com</p>
+            <p className="font-semibold">Password: Shariful!23</p>
           </div>
 
           <h2 className="text-3xl font-semibold text-gray-900 dark:text-white mb-8 text-center mt-6">
