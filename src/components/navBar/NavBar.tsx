@@ -5,13 +5,21 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const dispatch = useAppDispath();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
-  // Active link class
   const activeClass = "text-blue-600 font-bold";
 
   const handlLogOut = () => {
@@ -46,6 +54,14 @@ const Navbar = () => {
             >
               Home
             </NavLink>
+            {/* <NavLink
+              to="/dashboard"
+              className={({ isActive }) =>
+                isActive ? "text-blue-600 font-bold" : "text-gray-700"
+              }
+            >
+              Dashboard
+            </NavLink> */}
             <NavLink
               to="/courses"
               className={({ isActive }) =>
@@ -79,14 +95,34 @@ const Navbar = () => {
           </div>
 
           {/* Auth Buttons */}
-          <div className="hidden md:flex space-x-4">
+          <div className="hidden md:flex space-x-4 ">
             {user ? (
-              <button
-                onClick={handlLogOut}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-              >
-                LogOut
-              </button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="px-2 py-1 rounded-full cursor-pointer">
+                    <Avatar>
+                      <AvatarImage src="https://github.com/shadcn.png" />
+                      <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-40">
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    className="cursor-pointer"
+                    onClick={() => navigate("/dashboard")}
+                  >
+                    Dashboard
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    className="cursor-pointer"
+                    onClick={handlLogOut}
+                  >
+                    Logout
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             ) : (
               <div>
                 <NavLink
@@ -109,7 +145,7 @@ const Navbar = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-800 dark:text-white focus:outline-none"
+              className="text-gray-800 cursor-pointer dark:text-white focus:outline-none"
             >
               {isOpen ? (
                 <svg
@@ -169,17 +205,26 @@ const Navbar = () => {
           ))}
           <div className="flex flex-col space-y-2 mt-4">
             {user ? (
-              <button
-                onClick={handlLogOut}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-              >
-                LogOut
-              </button>
+              <>
+                <NavLink
+                  to="/dashboard"
+                  className="px-4 py-2 cursor-pointer bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Dashboard
+                </NavLink>
+                <button
+                  onClick={handlLogOut}
+                  className="px-4 py-2 cursor-pointer bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+                >
+                  LogOut
+                </button>
+              </>
             ) : (
               <div>
                 <NavLink
                   to="/login"
-                  className="px-4 py-2  bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
                 >
                   Login
                 </NavLink>

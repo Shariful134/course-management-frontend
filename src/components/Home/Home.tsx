@@ -25,7 +25,6 @@ type SuccessStory = {
 };
 
 const Home = () => {
-  // Fetch courses using RTK Query
   const {
     data: courseData,
     isLoading: coursesLoading,
@@ -34,19 +33,16 @@ const Home = () => {
   const coursess: Course[] = courseData?.data || [];
   const courses = coursess.filter((c: any) => c.isPopular === true);
 
-  // Fetch success stories using RTK Query
   const {
     data: storyData,
     isLoading: storiesLoading,
     isError: storiesError,
   } = useGetAllStoriesQuery(undefined);
   const stories: SuccessStory[] = storyData?.data || [];
-  console.log(courseData, storyData);
-  // Helper check if thumbnail is YouTube URL
+
   const isYoutubeUrl = (str: string) =>
     str.includes("youtu.be") || str.includes("youtube.com/watch");
 
-  // Convert YouTube URL → embed URL
   const getYoutubeEmbedUrl = (url: string) => {
     if (!url) return "";
     if (url.includes("youtu.be/")) {
@@ -59,6 +55,24 @@ const Home = () => {
     }
     return url;
   };
+
+  // 🔹 Skeleton Loader Component
+  const CourseSkeleton = () => (
+    <div className="p-6 border border-gray-200 rounded-lg shadow bg-gray-100 dark:bg-gray-700 animate-pulse">
+      <div className="w-full h-40 bg-gray-300 dark:bg-gray-600 rounded mb-4"></div>
+      <div className="h-6 bg-gray-300 dark:bg-gray-600 rounded w-3/4 mb-3"></div>
+      <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-1/2 mb-2"></div>
+      <div className="h-3 bg-gray-300 dark:bg-gray-600 rounded w-full mb-2"></div>
+      <div className="h-3 bg-gray-300 dark:bg-gray-600 rounded w-2/3"></div>
+    </div>
+  );
+
+  const StorySkeleton = () => (
+    <div className="p-6 border border-gray-200 rounded-lg shadow bg-gray-100 dark:bg-gray-700 animate-pulse">
+      <div className="h-20 bg-gray-300 dark:bg-gray-600 rounded mb-4"></div>
+      <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-1/2"></div>
+    </div>
+  );
 
   return (
     <div className="container mx-auto">
@@ -87,87 +101,92 @@ const Home = () => {
 
       {/* Popular Courses */}
       <section className="py-16 bg-white dark:bg-gray-800">
-        <div className="">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
-            Popular Courses
-          </h2>
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
+          Popular Courses
+        </h2>
 
-          {coursesLoading && <p>Loading courses...</p>}
-          {coursesError && <p>Error loading courses!</p>}
+        {coursesError && <p className="text-red-500">Error loading courses!</p>}
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {courses.map((course) => (
-              <div
-                key={course._id}
-                className="p-6 border border-gray-300 rounded-lg shadow hover:shadow-lg transition bg-gray-50 dark:bg-gray-700"
-              >
-                {/* Thumbnail */}
-                {isYoutubeUrl(course.thumbnailImage) ? (
-                  <div className="w-full relative pb-[56.25%] mb-4 rounded overflow-hidden">
-                    <iframe
-                      className="absolute top-0 left-0 w-full h-full"
-                      src={getYoutubeEmbedUrl(course.thumbnailImage)}
-                      title={course.title}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
-                  </div>
-                ) : (
-                  <img
-                    src={course.thumbnailImage}
-                    alt={course.title}
-                    className="w-full h-40 object-cover rounded mb-4"
-                  />
-                )}
-
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                  {course.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-2">
-                  Instructor: {course.instructor?.name}
-                </p>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-                  {course.description.slice(0, 80)}...
-                </p>
-                <p className="text-blue-600 font-bold mb-4">${course.price}</p>
-                <a
-                  href={`/courses/${course._id}`}
-                  className="text-blue-600 hover:underline"
+        <div className="grid md:grid-cols-3 gap-6">
+          {coursesLoading
+            ? Array.from({ length: 3 }).map((_, idx) => (
+                <CourseSkeleton key={idx} />
+              ))
+            : courses.map((course) => (
+                <div
+                  key={course._id}
+                  className="p-6 border border-gray-300 rounded-lg shadow hover:shadow-lg transition bg-gray-50 dark:bg-gray-700"
                 >
-                  View Details
-                </a>
-              </div>
-            ))}
-          </div>
+                  {isYoutubeUrl(course.thumbnailImage) ? (
+                    <div className="w-full relative pb-[56.25%] mb-4 rounded overflow-hidden">
+                      <iframe
+                        className="absolute top-0 left-0 w-full h-full"
+                        src={getYoutubeEmbedUrl(course.thumbnailImage)}
+                        title={course.title}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                    </div>
+                  ) : (
+                    <img
+                      src={course.thumbnailImage}
+                      alt={course.title}
+                      className="w-full h-40 object-cover rounded mb-4"
+                    />
+                  )}
+
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                    {course.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-2">
+                    Instructor: {course.instructor?.name}
+                  </p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
+                    {course.description.slice(0, 80)}...
+                  </p>
+                  <p className="text-blue-600 font-bold mb-4">
+                    ${course.price}
+                  </p>
+                  <a
+                    href={`/courses/${course._id}`}
+                    className="text-blue-600 hover:underline"
+                  >
+                    View Details
+                  </a>
+                </div>
+              ))}
         </div>
       </section>
 
       {/* Success Stories */}
       <section className="py-16 bg-gray-50 dark:bg-gray-900">
-        <div className="">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
-            Success Stories
-          </h2>
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
+          Success Stories
+        </h2>
 
-          {storiesLoading && <p>Loading success stories...</p>}
-          {storiesError && <p>Error loading success stories!</p>}
+        {storiesError && (
+          <p className="text-red-500">Error loading success stories!</p>
+        )}
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {stories.map((story) => (
-              <div
-                key={story._id}
-                className="p-6 border border-gray-300 rounded-lg shadow hover:shadow-lg transition bg-white dark:bg-gray-800"
-              >
-                <p className="italic text-gray-700 dark:text-gray-300 mb-4">
-                  “{story.storyText}”
-                </p>
-                <p className="font-semibold text-gray-900 dark:text-white">
-                  — {story.studentName}, {story.courseName}
-                </p>
-              </div>
-            ))}
-          </div>
+        <div className="grid md:grid-cols-2 gap-6">
+          {storiesLoading
+            ? Array.from({ length: 2 }).map((_, idx) => (
+                <StorySkeleton key={idx} />
+              ))
+            : stories.map((story) => (
+                <div
+                  key={story._id}
+                  className="p-6 border border-gray-300 rounded-lg shadow hover:shadow-lg transition bg-white dark:bg-gray-800"
+                >
+                  <p className="italic text-gray-700 dark:text-gray-300 mb-4">
+                    “{story.storyText}”
+                  </p>
+                  <p className="font-semibold text-gray-900 dark:text-white">
+                    — {story.studentName}, {story.courseName}
+                  </p>
+                </div>
+              ))}
         </div>
       </section>
     </div>

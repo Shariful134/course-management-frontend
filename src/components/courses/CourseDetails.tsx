@@ -64,12 +64,33 @@ const CourseDetails: React.FC = () => {
     return url;
   };
 
-  if (isLoading)
+  // ✅ Professional Skeleton Loader
+  if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-[70vh]">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-600 border-b-4"></div>
+      <div className="container mx-auto py-16 animate-pulse">
+        <div className="flex flex-col lg:flex-row gap-10">
+          {/* Left side skeleton */}
+          <div className="lg:w-1/2 w-full flex flex-col gap-6">
+            <div className="w-full h-80 bg-gray-300 dark:bg-gray-600 rounded-lg"></div>
+            <div className="h-8 w-2/3 bg-gray-300 dark:bg-gray-600 rounded"></div>
+            <div className="h-4 w-1/2 bg-gray-300 dark:bg-gray-600 rounded"></div>
+            <div className="h-20 w-full bg-gray-300 dark:bg-gray-600 rounded"></div>
+            <div className="h-6 w-24 bg-gray-300 dark:bg-gray-600 rounded"></div>
+          </div>
+
+          {/* Right side skeleton (form) */}
+          <div className="lg:w-1/2 w-full bg-gray-100 dark:bg-gray-700 p-6 rounded-lg shadow-lg flex flex-col gap-4">
+            <div className="h-6 w-1/3 bg-gray-300 dark:bg-gray-600 rounded"></div>
+            <div className="h-12 w-full bg-gray-300 dark:bg-gray-600 rounded"></div>
+            <div className="h-12 w-full bg-gray-300 dark:bg-gray-600 rounded"></div>
+            <div className="h-12 w-full bg-gray-300 dark:bg-gray-600 rounded"></div>
+            <div className="h-20 w-full bg-gray-300 dark:bg-gray-600 rounded"></div>
+            <div className="h-12 w-1/2 bg-blue-300 dark:bg-blue-600 rounded"></div>
+          </div>
+        </div>
       </div>
     );
+  }
 
   if (isError || !course)
     return (

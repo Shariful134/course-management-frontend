@@ -1,35 +1,36 @@
-// import { ReactNode } from "react";
-// import { useAppDispath, useAppSelector } from "../../redux/hooks";
+import { useAppDispath, useAppSelector } from "../../redux/hooks";
 
-// import { Navigate } from "react-router";
-// import { verifyToken } from "../../utils/verifyToken";
-// import { logout, useCurrentToken } from "../../redux/auth/authSlice";
-// import { TUser } from "../../types/type";
+import { Navigate } from "react-router";
 
-// type Tprotected = {
-//   children: ReactNode;
-//   role: string | undefined;
-// };
+import { logout, useCurrentToken } from "../../redux/auth/authSlice";
+import { verifyToken } from "@/utils/Verifytoken";
+import type { TUser } from "@/type/types";
+import type { ReactNode } from "react";
 
-// const ProtectedRoutes = ({ children, role }: Tprotected) => {
-//   const token = useAppSelector(useCurrentToken);
+type Tprotected = {
+  children: ReactNode;
+  role: string | undefined;
+};
 
-//   const dispatch = useAppDispath();
-//   let user;
-//   if (token) {
-//     user = verifyToken(token) as TUser;
-//   }
-//   console.log(user);
+const ProtectedRoutes = ({ children, role }: Tprotected) => {
+  const token = useAppSelector(useCurrentToken);
 
-//   if (role != undefined && role != user?.role) {
-//     dispatch(logout());
-//     return <Navigate to="/login" replace={true}></Navigate>;
-//   }
-//   if (!token) {
-//     return <Navigate to="/login" replace={true}></Navigate>;
-//   }
+  const dispatch = useAppDispath();
+  let user;
+  if (token) {
+    user = verifyToken(token) as TUser;
+  }
+  console.log(user);
 
-//   return children;
-// };
+  if (role != undefined && role != user?.role) {
+    dispatch(logout());
+    return <Navigate to="/login" replace={true}></Navigate>;
+  }
+  if (!token) {
+    return <Navigate to="/login" replace={true}></Navigate>;
+  }
 
-// export default ProtectedRoutes;
+  return children;
+};
+
+export default ProtectedRoutes;

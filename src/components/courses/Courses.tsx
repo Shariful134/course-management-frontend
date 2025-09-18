@@ -49,10 +49,27 @@ const Courses = () => {
     return url;
   };
 
+  // ✅ Professional Loading Skeleton
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-[60vh]">
-        <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-blue-600"></div>
+      <div className="container mx-auto py-10">
+        <h1 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
+          All Courses
+        </h1>
+        <div className="grid md:grid-cols-3 gap-6">
+          {Array.from({ length: 6 }).map((_, idx) => (
+            <div
+              key={idx}
+              className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg shadow bg-gray-50 dark:bg-gray-800 animate-pulse"
+            >
+              <div className="w-full h-40 bg-gray-300 dark:bg-gray-600 rounded mb-4"></div>
+              <div className="h-6 bg-gray-300 dark:bg-gray-600 rounded mb-3"></div>
+              <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded mb-2 w-3/4"></div>
+              <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded mb-2 w-1/2"></div>
+              <div className="h-5 bg-gray-300 dark:bg-gray-600 rounded w-20 mt-4"></div>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
@@ -83,7 +100,7 @@ const Courses = () => {
   }
 
   return (
-    <div className="container  mx-auto py-5">
+    <div className="container mx-auto py-5">
       <h1 className="text-3xl pt-10 font-bold mb-6 text-gray-900 dark:text-white">
         All Courses
       </h1>
