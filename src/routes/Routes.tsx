@@ -12,6 +12,8 @@ import ProtectedRoutes from "@/components/layout/ProtectedRoutes";
 import StoryForm from "@/components/admin/StoryForm";
 import CourseList from "@/components/admin/CourseList";
 import StoryList from "@/components/admin/story/StoryList";
+import Contact from "@/components/contact/Contact";
+import About from "@/components/about/About";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/about",
+        element: <About />,
       },
     ],
   },
