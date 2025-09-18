@@ -56,7 +56,7 @@ const Home = () => {
     return url;
   };
 
-  // 🔹 Skeleton Loader Component
+  //  Skeleton Loader Component
   const CourseSkeleton = () => (
     <div className="p-6 border border-gray-200 rounded-lg shadow bg-gray-100 dark:bg-gray-700 animate-pulse">
       <div className="w-full h-40 bg-gray-300 dark:bg-gray-600 rounded mb-4"></div>

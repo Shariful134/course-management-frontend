@@ -64,7 +64,7 @@ const CourseDetails: React.FC = () => {
     return url;
   };
 
-  // ✅ Professional Skeleton Loader
+  // Professional Skeleton Loader
   if (isLoading) {
     return (
       <div className="container mx-auto py-16 animate-pulse">

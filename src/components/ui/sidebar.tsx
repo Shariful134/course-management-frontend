@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 "use client";
 
 import * as React from "react";
@@ -697,7 +698,7 @@ function SidebarMenuSubButton({
     />
   );
 }
-export default useSidebar;
+
 export {
   Sidebar,
   SidebarContent,

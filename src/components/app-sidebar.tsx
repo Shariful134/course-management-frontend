@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
 import {
-  IconDatabase,
-  IconFileWord,
-  IconInnerShadowTop,
+
+  // IconInnerShadowTop,
   IconReport,
 } from "@tabler/icons-react";
 
@@ -24,43 +23,24 @@ import { selectCurrentUser } from "@/redux/auth/authSlice";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const user = useSelector(selectCurrentUser) as any;
+  console.log(user);
 
   const data = {
     user: {
-      name: "shadcn",
-      email: "m@example.com",
+      name: `${user?.userEmail}`,
+      email: `${user?.userEmail}`,
       avatar: "/avatars/shadcn.jpg",
     },
     documents: [
-      ...(user?.role === "admin"
-        ? [
-            {
-              name: "Course-Create",
-              url: "/dashboard/create-course",
-              icon: IconDatabase,
-            },
-          ]
-        : []),
-
-      ...(user?.role === "user"
-        ? [
-            {
-              name: "Course Booking",
-              url: "/dashboard/course-booking",
-              icon: IconBook,
-            },
-          ]
-        : []),
-
       {
-        name: "Reports",
-        url: "#",
+        name: user?.role === "admin" ? "Course-List" : "Home",
+        url: user?.role === "admin" ? "/dashboard/course-list" : "/",
         icon: IconReport,
       },
       {
-        name: "Word Assistant",
-        url: "#",
-        icon: IconFileWord,
+        name: user?.role === "admin" ? "Story-List" : "All-Courses",
+        url: user?.role === "admin" ? "/dashboard/story-list" : "/courses",
+        icon: IconReport,
       },
     ],
   };
@@ -74,9 +54,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               asChild
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
-              <a href="#">
-                <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Acme Inc.</span>
+              <a href="/">
+                {/* <IconInnerShadowTop className="!size-5" /> */}
+                <span className="text-xl font-bold text-gray-900 dark:text-white">
+                  EduPlatform
+                </span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>

@@ -33,6 +33,7 @@ export type TRegsiter = {
 
 export type TUser = {
   userId: string;
+  userName?: string;
   role: string;
   iat: number;
   exp: number;

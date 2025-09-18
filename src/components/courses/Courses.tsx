@@ -49,7 +49,7 @@ const Courses = () => {
     return url;
   };
 
-  // ✅ Professional Loading Skeleton
+  //  Professional Loading Skeleton
   if (isLoading) {
     return (
       <div className="container mx-auto py-10">

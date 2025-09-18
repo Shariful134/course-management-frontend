@@ -9,6 +9,9 @@ import DashboardLayout from "@/dashboard/DashboardLayout";
 import DashboardHome from "@/dashboard/DashboardHome";
 import CourseForm from "@/components/admin/CourseForm";
 import ProtectedRoutes from "@/components/layout/ProtectedRoutes";
+import StoryForm from "@/components/admin/StoryForm";
+import CourseList from "@/components/admin/CourseList";
+import StoryList from "@/components/admin/story/StoryList";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +53,38 @@ const router = createBrowserRouter([
           </ProtectedRoutes>
         ),
       },
+      {
+        path: "create-story",
+        element: (
+          <ProtectedRoutes role="admin">
+            <StoryForm />
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: "course-list",
+        element: (
+          <ProtectedRoutes role="admin">
+            <CourseList />
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: "story-list",
+        element: (
+          <ProtectedRoutes role="admin">
+            <StoryList />
+          </ProtectedRoutes>
+        ),
+      },
+      // {
+      //   path: "course-update",
+      //   element: (
+      //     <ProtectedRoutes role="admin">
+      //       <UpdateCourseForm />
+      //     </ProtectedRoutes>
+      //   ),
+      // },
       // চাইলে আরও nested route যোগ করতে পারো
       // { path: "analytics", element: <AnalyticsPage /> },
     ],
