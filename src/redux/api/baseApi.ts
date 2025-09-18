@@ -47,7 +47,7 @@ const baseQueryWithRefreshToken: BaseQueryFn<
   if (result?.error?.status === 401) {
     console.log("Sending Refresh token ");
     const res = await fetch(
-      // "http://localhost:5000/api/v1/auth/refresh-token",
+      //"http://localhost:5000/api/v1/auth/refresh-token",
       "https://course-management-puce.vercel.app/api/v1/auth/refresh-token",
       {
         method: "POST",

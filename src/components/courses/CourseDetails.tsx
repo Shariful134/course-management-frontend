@@ -67,7 +67,7 @@ const CourseDetails: React.FC = () => {
   // Professional Skeleton Loader
   if (isLoading) {
     return (
-      <div className="container mx-auto py-16 animate-pulse">
+      <div className="container mx-auto py-16 animate-pulse px-6 lg:px-0">
         <div className="flex flex-col lg:flex-row gap-10">
           {/* Left side skeleton */}
           <div className="lg:w-1/2 w-full flex flex-col gap-6">
@@ -100,7 +100,7 @@ const CourseDetails: React.FC = () => {
     );
 
   return (
-    <div className="container  mx-auto py-16">
+    <div className="container  mx-auto py-16 px-6 lg:px-0">
       <div className="flex flex-col lg:flex-row gap-10">
         {/* Left side: Course details */}
         <div className="lg:w-1/2 w-full flex flex-col gap-6">

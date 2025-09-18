@@ -100,8 +100,8 @@ const Home = () => {
       </section>
 
       {/* Popular Courses */}
-      <section className="py-16 bg-white dark:bg-gray-800">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
+      <section className="py-16 px-6 lg:px-0 bg-white dark:bg-gray-800">
+        <h2 className="text-3xl  font-bold text-gray-900 dark:text-white mb-8">
           Popular Courses
         </h2>
 
@@ -160,7 +160,7 @@ const Home = () => {
       </section>
 
       {/* Success Stories */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-900">
+      <section className="py-16 px-6 lg:px-0 bg-gray-50 dark:bg-gray-900">
         <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
           Success Stories
         </h2>

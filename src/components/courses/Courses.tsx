@@ -52,7 +52,7 @@ const Courses = () => {
   //  Professional Loading Skeleton
   if (isLoading) {
     return (
-      <div className="container mx-auto py-10">
+      <div className="container mx-auto py-10 px-6 lg:px-0">
         <h1 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
           All Courses
         </h1>
@@ -100,7 +100,7 @@ const Courses = () => {
   }
 
   return (
-    <div className="container mx-auto py-5">
+    <div className="container mx-auto py-5 px-6 lg:px-0">
       <h1 className="text-3xl pt-10 font-bold mb-6 text-gray-900 dark:text-white">
         All Courses
       </h1>
