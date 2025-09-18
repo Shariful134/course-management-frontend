@@ -188,9 +188,9 @@ const Courses = () => {
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
               {course.description.slice(0, 80)}...
             </p>
-            <p className="text-blue-600 font-bold mb-4">${course.price}</p>
+            <p className="text-blue-600 font-bold mb-4">${course?.price}</p>
             <Link
-              to={`/courses/${course._id}`}
+              to={`/courses/${course?._id}`}
               className="text-blue-600 hover:underline"
             >
               View Details

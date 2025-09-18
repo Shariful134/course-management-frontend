@@ -235,7 +235,7 @@ const CourseList = () => {
           <tbody>
             {filteredCourses.map((course: any, index: number) => (
               <tr
-                key={course._id}
+                key={course?._id}
                 className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition"
               >
                 <td className="py-3 px-6">{index + 1}</td>
@@ -249,13 +249,13 @@ const CourseList = () => {
                 {user?.role === "admin" && (
                   <td className="py-3 px-6 flex gap-2">
                     <button
-                      onClick={() => handleEditClick(course._id)}
+                      onClick={() => handleEditClick(course?._id)}
                       className="bg-blue-600 cursor-pointer text-white px-4 py-1 rounded hover:bg-blue-700 transition"
                     >
                       Edit
                     </button>
                     <button
-                      onClick={() => handleDeleteClick(course._id)}
+                      onClick={() => handleDeleteClick(course?._id)}
                       className="bg-red-600 cursor-pointer text-white px-4 py-1 rounded hover:bg-red-700 transition"
                     >
                       Delete

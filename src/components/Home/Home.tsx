@@ -114,7 +114,7 @@ const Home = () => {
               ))
             : courses.map((course) => (
                 <div
-                  key={course._id}
+                  key={course?._id}
                   className="p-6 border border-gray-300 rounded-lg shadow hover:shadow-lg transition bg-gray-50 dark:bg-gray-700"
                 >
                   {isYoutubeUrl(course.thumbnailImage) ? (
