@@ -44,8 +44,8 @@ const Footer = () => {
         {/* Contact */}
         <div>
           <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
-          <p>Email: support@eduplatform.com</p>
-          <p>Phone: +880 1234 567 890</p>
+          <p>Email: Shariful32213@gmail.com</p>
+          <p>Phone: +880 1762 370 111</p>
           <p>Address: Dhaka, Bangladesh</p>
         </div>
       </div>
